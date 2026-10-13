@@ -1,0 +1,24 @@
+<div class="container my-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">Liste des événements</h2>
+    <a class="btn btn-primary" routerLink="/events/add">+ Add Event</a>
+  </div>
+
+  <div class="row g-3">
+    @for (e of events(); track e.id) {
+      <div class="col-12 col-md-6 col-lg-3">
+        <div class="card shadow-sm h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ e.name }}</h5>
+            <p class="small mb-2"><strong>Description :</strong> {{ e.description }}</p>
+            <p class="small mb-2">📍 <strong>Lieu :</strong> {{ e.location }}</p>
+            <p class="small mb-2">📅 <strong>Date :</strong> {{ e.date }}</p>
+            <p class="small mb-2">💰 <strong>Prix :</strong> {{ e.price }} DT</p>
+            <p class="small mb-3">🎟️ <strong>Places disponibles :</strong> {{ e.seats }}</p>
+            <a class="btn btn-outline-secondary btn-sm" [routerLink]="['/events', e.id]">Voir détails</a>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

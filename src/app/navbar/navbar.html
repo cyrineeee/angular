@@ -1,0 +1,20 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand fw-bold" routerLink="/">ANG Store</a>
+    <ul class="navbar-nav ms-auto flex-row gap-3">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/" routerLinkActive="active fw-bold"
+           [routerLinkActiveOptions]="{ exact: true }">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/products" routerLinkActive="active fw-bold">Products</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/events" routerLinkActive="active fw-bold">Events</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/about" routerLinkActive="active fw-bold">About</a>
+      </li>
+    </ul>
+  </div>
+</nav>

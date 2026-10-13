@@ -1,0 +1,18 @@
+<div class="container my-4">
+  @if (event) {
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <h2 class="card-title">{{ event.name }}</h2>
+        <p><strong>Description :</strong> {{ event.description }}</p>
+        <p>📍 <strong>Lieu :</strong> {{ event.location }}</p>
+        <p>📅 <strong>Date :</strong> {{ event.date }}</p>
+        <p>💰 <strong>Prix :</strong> {{ event.price }} DT</p>
+        <p>🎟️ <strong>Places disponibles :</strong> {{ event.seats }}</p>
+        <a class="btn btn-outline-secondary" routerLink="/events">← Retour</a>
+      </div>
+    </div>
+  } @else {
+    <div class="alert alert-warning">Événement introuvable.</div>
+    <a class="btn btn-outline-secondary" routerLink="/events">← Retour</a>
+  }
+</div>

@@ -1,0 +1,91 @@
+<div class="container my-4">
+  <h2 class="mb-4">Ajouter un événement</h2>
+
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="row">
+
+          @let name = form.controls.name;
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="name">Nom</label>
+            <input id="name" class="form-control" formControlName="name"
+                   [class.is-invalid]="name.invalid && name.touched">
+            @if (name.touched && name.errors) {
+              <div class="invalid-feedback">
+                @if (name.errors['required']) { Le nom est obligatoire. }
+                @else if (name.errors['minlength']) { Minimum 3 caractères. }
+              </div>
+            }
+          </div>
+
+          @let location = form.controls.location;
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="location">Lieu</label>
+            <input id="location" class="form-control" formControlName="location"
+                   [class.is-invalid]="location.invalid && location.touched">
+            @if (location.touched && location.errors?.['required']) {
+              <div class="invalid-feedback">Le lieu est obligatoire.</div>
+            }
+          </div>
+
+          @let description = form.controls.description;
+          <div class="col-12 mb-3">
+            <label class="form-label" for="description">Description</label>
+            <textarea id="description" rows="2" class="form-control" formControlName="description"
+                      [class.is-invalid]="description.invalid && description.touched"></textarea>
+            <div class="form-text">{{ descriptionLength() }} / 200 caractères</div>
+            @if (description.touched && description.errors) {
+              <div class="invalid-feedback d-block">
+                @if (description.errors['required']) { La description est obligatoire. }
+                @else if (description.errors['minlength']) { Minimum 10 caractères. }
+                @else if (description.errors['maxlength']) { Maximum 200 caractères. }
+              </div>
+            }
+          </div>
+
+          @let date = form.controls.date;
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="date">Date</label>
+            <input id="date" type="date" class="form-control" formControlName="date"
+                   [class.is-invalid]="date.invalid && date.touched">
+            @if (date.touched && date.errors) {
+              <div class="invalid-feedback">
+                @if (date.errors['required']) { La date est obligatoire. }
+                @else if (date.errors['pastDate']) { La date ne peut pas être dans le passé. }
+              </div>
+            }
+          </div>
+
+          @let price = form.controls.price;
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="price">Prix (DT)</label>
+            <input id="price" type="number" class="form-control" formControlName="price"
+                   [class.is-invalid]="price.invalid && price.touched">
+            @if (price.touched && price.errors) {
+              <div class="invalid-feedback">Le prix doit être un nombre supérieur ou égal à 0.</div>
+            }
+          </div>
+
+          @let seats = form.controls.seats;
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="seats">Places disponibles</label>
+            <input id="seats" type="number" class="form-control" formControlName="seats"
+                   [class.is-invalid]="seats.invalid && seats.touched">
+            @if (seats.touched && seats.errors) {
+              <div class="invalid-feedback">Il faut au moins 1 place.</div>
+            }
+          </div>
+        </div>
+
+        <div class="d-flex align-items-center gap-2">
+          <button type="submit" class="btn btn-success" [disabled]="!isValid()">Enregistrer</button>
+          <a class="btn btn-outline-secondary" routerLink="/events">Annuler</a>
+          <span class="badge ms-auto" [class]="isValid() ? 'text-bg-success' : 'text-bg-danger'">
+            {{ isValid() ? 'Formulaire valide' : 'Formulaire invalide' }}
+          </span>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
